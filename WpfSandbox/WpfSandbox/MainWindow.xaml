@@ -8,12 +8,9 @@
         Title="MainWindow" Height="600" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="customerViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Customer}}"/>
-        <CollectionViewSource x:Key="customerViewSource1" d:DesignSource="{d:DesignInstance {x:Type local:Customer}}"/>
-        <CollectionViewSource x:Key="customerOrdersViewSource" Source="{Binding Orders, Source={StaticResource customerViewSource1}}"/>
-        <CollectionViewSource x:Key="customerViewSource2" d:DesignSource="{d:DesignInstance {x:Type local:Customer}}"/>
-        <CollectionViewSource x:Key="customerOrdersViewSource1" Source="{Binding Orders, Source={StaticResource customerViewSource2}}"/>
+        <CollectionViewSource x:Key="customerOrdersViewSource" Source="{Binding Orders, Source={StaticResource customerViewSource}}"/>
     </Window.Resources>
-    <Grid>
+    <Grid DataContext="{StaticResource customerOrdersViewSource}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -60,7 +57,7 @@
             <Label Grid.Column="0" Content="Region:" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
             <TextBox x:Name="regionTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="10" Text="{Binding Region, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <DataGrid x:Name="ordersDataGrid" DataContext="{StaticResource customerOrdersViewSource}" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource customerOrdersViewSource1}}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="158,29,158,69" Grid.Row="2">
+        <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="90,46,51,80" Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="customerIDColumn" Binding="{Binding CustomerID}" Header="Customer ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="employeeIDColumn" Binding="{Binding EmployeeID}" Header="Employee ID" Width="SizeToHeader"/>
