@@ -68,7 +68,7 @@
             <Button Name="btnUpdate" Content="Commit" Command="{StaticResource UpdateCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
             <Button Content="Cancel" Name="btnCancel" Command="{StaticResource CancelCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
         </StackPanel>
-        <Grid x:Name="existingCustomerGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,5,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="AntiqueWhite" DataContext="{StaticResource customerViewSource}" Height="0" Width="0">
+        <Grid x:Name="existingCustomerGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,5,0,0" Visibility="Visible" VerticalAlignment="Top" Background="AntiqueWhite" DataContext="{StaticResource customerViewSource}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="233"/>
                 <ColumnDefinition Width="Auto" MinWidth="397"/>
@@ -162,7 +162,7 @@
             <TextBox x:Name="add_regionTextBox" Grid.Column="1" Grid.Row="5" Style="{StaticResource CustTextBox}"
                   Text="{Binding Region, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
         </Grid>
-        <Grid x:Name="newOrderGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" DataContext="{Binding Path=newOrder, Mode=TwoWay}" Visibility="Visible" Background="LightGreen" Height="209" Width="630">
+        <Grid x:Name="newOrderGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" DataContext="{Binding Path=newOrder, Mode=TwoWay}" Visibility="Collapsed" Background="LightGreen" Height="209" Width="630">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="233"/>
                 <ColumnDefinition Width="Auto" MinWidth="397"/>
@@ -237,7 +237,8 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn x:Name="shipPostalCodeColumn" Binding="{Binding ShipPostalCode}" Header="Ship Postal Code" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="shipRegionColumn" Binding="{Binding ShipRegion}" Header="Ship Region" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="shipViaColumn" Binding="{Binding ShipVia}" Header="Ship Via" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="shipViaColumn" Binding="{Binding Shipper.CompanyName}" Header="Ship Via" Width="SizeToHeader"/>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
