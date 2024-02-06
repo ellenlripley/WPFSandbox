@@ -190,9 +190,9 @@
             <DatePicker x:Name="add_shippedDatePicker"  Grid.Row="4"  HorizontalAlignment="Right" Width="120"
                  SelectedDate="{Binding ShippedDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Ship Via:"  Grid.Row="5" Style="{StaticResource Label}"/>
-            <TextBox x:Name="add_ShipViaTextBox"  Grid.Row="5" Style="{StaticResource CustTextBox}"
-                  Text="{Binding ShipVia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-            
+            <ComboBox x:Name="shipViaComboBox" DisplayMemberPath="CompanyName" SelectedValuePath="ShipperID" SelectedValue="{Binding ShipVia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        ItemsSource="{Binding Source={StaticResource shipperViewSource}}" Margin="113,0,0,3" Grid.Row="5"/>
+
             <Label Content="Freight"  Grid.Row="6" Style="{StaticResource Label}"/>
             <TextBox x:Name="add_freightTextBox" Grid.Row="6" Style="{StaticResource CustTextBox}"
                   Text="{Binding Freight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
@@ -238,7 +238,7 @@
                 <DataGridTextColumn x:Name="shipPostalCodeColumn" Binding="{Binding ShipPostalCode}" Header="Ship Postal Code" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="shipRegionColumn" Binding="{Binding ShipRegion}" Header="Ship Region" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="shipViaColumn" Binding="{Binding Shipper.CompanyName}" Header="Ship Via" Width="SizeToHeader"/>
-                
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
