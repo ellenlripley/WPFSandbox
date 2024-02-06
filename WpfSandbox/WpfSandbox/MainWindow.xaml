@@ -9,6 +9,7 @@
     <Window.Resources>
         <CollectionViewSource x:Key="customerViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Customer}}"/>
         <CollectionViewSource x:Key="customerOrdersViewSource" Source="{Binding Orders, Source={StaticResource customerViewSource}}"/>
+        <CollectionViewSource x:Key="shipperViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Shipper}}"/>
         <Style x:Key="Label" TargetType="{x:Type Label}" BasedOn="{x:Null}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -53,10 +54,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="125*"/>
+            <RowDefinition Height="149*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="2,2,2,0" Height="36" VerticalAlignment="Top" Background="Gainsboro" DataContext="{StaticResource customerViewSource}" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+        <StackPanel Orientation="Horizontal" Margin="2,0,2,0" Height="36" VerticalAlignment="Center" Background="Gainsboro" DataContext="{StaticResource customerViewSource}">
             <Button Name="btnFirst" Content="|◄" Command="{StaticResource FirstCommand}" Style="{StaticResource NavButton}"/>
             <Button Name="btnPrev" Content="◄" Command="{StaticResource PreviousCommand}" Style="{StaticResource NavButton}"/>
             <Button Name="btnNext" Content="►" Command="{StaticResource NextCommand}" Style="{StaticResource NavButton}"/>
@@ -67,7 +68,7 @@
             <Button Name="btnUpdate" Content="Commit" Command="{StaticResource UpdateCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
             <Button Content="Cancel" Name="btnCancel" Command="{StaticResource CancelCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
         </StackPanel>
-        <Grid x:Name="existingCustomerGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5" Visibility="Visible" VerticalAlignment="Top" Background="AntiqueWhite" DataContext="{StaticResource customerViewSource}">
+        <Grid x:Name="existingCustomerGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,5,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="AntiqueWhite" DataContext="{StaticResource customerViewSource}" Height="0" Width="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="233"/>
                 <ColumnDefinition Width="Auto" MinWidth="397"/>
@@ -114,7 +115,7 @@
             <TextBox x:Name="regionTextBox" Grid.Column="1" Grid.Row="5" Style="{StaticResource CustTextBox}"
                   Text="{Binding Region, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
         </Grid>
-        <Grid x:Name="newCustomerGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=newCustomer, UpdateSourceTrigger=Explicit}" Visibility="Collapsed" Background="CornflowerBlue">
+        <Grid x:Name="newCustomerGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=newCustomer, UpdateSourceTrigger=Explicit}" Visibility="Collapsed" Background="CornflowerBlue" Height="0" Width="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="233"/>
                 <ColumnDefinition Width="Auto" MinWidth="397"/>
@@ -161,7 +162,7 @@
             <TextBox x:Name="add_regionTextBox" Grid.Column="1" Grid.Row="5" Style="{StaticResource CustTextBox}"
                   Text="{Binding Region, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
         </Grid>
-        <Grid x:Name="newOrderGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" DataContext="{Binding Path=newOrder, Mode=TwoWay}" Visibility="Collapsed" Background="LightGreen">
+        <Grid x:Name="newOrderGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" DataContext="{Binding Path=newOrder, Mode=TwoWay}" Visibility="Visible" Background="LightGreen" Height="209" Width="630">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="233"/>
                 <ColumnDefinition Width="Auto" MinWidth="397"/>
@@ -191,6 +192,7 @@
             <Label Content="Ship Via:"  Grid.Row="5" Style="{StaticResource Label}"/>
             <TextBox x:Name="add_ShipViaTextBox"  Grid.Row="5" Style="{StaticResource CustTextBox}"
                   Text="{Binding ShipVia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            
             <Label Content="Freight"  Grid.Row="6" Style="{StaticResource Label}"/>
             <TextBox x:Name="add_freightTextBox" Grid.Row="6" Style="{StaticResource CustTextBox}"
                   Text="{Binding Freight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
