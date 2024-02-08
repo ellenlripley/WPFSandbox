@@ -24,12 +24,14 @@ namespace WpfSandbox
         NorthwindEntities context = new NorthwindEntities();
         CollectionViewSource custViewSource;
         CollectionViewSource ordViewSource;
+        CollectionViewSource shipperViewSource;
 
         public MainWindow()
         {
             InitializeComponent();
             custViewSource = ((CollectionViewSource)(FindResource("customerViewSource")));
             ordViewSource = ((CollectionViewSource)(FindResource("customerOrdersViewSource")));
+            shipperViewSource = ((CollectionViewSource)(FindResource("shipperViewSource")));
             DataContext = this;
         }
 
@@ -46,6 +48,11 @@ namespace WpfSandbox
             // After the data is loaded, call the DbSet<T>.Local property    
             // to use the DbSet<T> as a binding source.   
             custViewSource.Source = context.Customers.Local;
+
+            context.Shippers.Load();
+
+            shipperViewSource.Source = context.Shippers.Local;
+
         }
         private void LastCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
@@ -172,18 +179,19 @@ namespace WpfSandbox
 
                 try
                 {
+                    // TODO 
                     // Exercise for the reader if you are using Northwind:  
                     // Add the Northwind Shippers table to the model.
 
                     // Acceptable ShipperID values are 1, 2, or 3.  
-                    if (add_ShipViaTextBox.Text == "1" || add_ShipViaTextBox.Text == "2"
-                        || add_ShipViaTextBox.Text == "3")
+                    
+                    if (Int32.TryParse(shipViaComboBox.SelectedValue.ToString(), out int selectedValue))
                     {
-                        newOrder.ShipVia = Convert.ToInt32(add_ShipViaTextBox.Text);
+                        newOrder.ShipVia = selectedValue;
                     }
                     else
                     {
-                        MessageBox.Show("Shipper ID must be 1, 2, or 3 in Northwind.");
+                        MessageBox.Show("Shipper ID must be in Northwind.");
                         return;
                     }
                 }

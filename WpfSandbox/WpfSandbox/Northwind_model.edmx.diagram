@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="NorthwindModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="NorthwindModel.FK_Orders_Customers" ManuallyRouted="false" />
         <AssociationConnector Association="NorthwindModel.FK_Order_Details_Orders" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NorthwindModel.Shipper" Width="1.5" PointX="0.75" PointY="6.875" />
+        <AssociationConnector Association="NorthwindModel.FK_Orders_Shippers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
