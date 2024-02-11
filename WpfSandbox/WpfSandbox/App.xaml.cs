@@ -14,11 +14,12 @@ namespace WpfSandbox
         protected override void OnStartup(StartupEventArgs e)
         {
             Log.Info("Starting WpfSandbox");
-            Bootstrapper.Initialize();
-            Log.Info("WpfSandbox started");
+ 
             base.OnStartup(e);
             ShutdownMode = ShutdownMode.OnMainWindowClose;
             Bootstrapper.Initialize();
+
+            Log.Info("WpfSandbox started");
         }
     }
 }
