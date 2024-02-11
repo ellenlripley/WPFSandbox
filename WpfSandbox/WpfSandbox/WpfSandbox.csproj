@@ -126,6 +126,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="IoCFactory.cs" />
     <Compile Include="Shipper.cs">
       <DependentUpon>Northwind_model.tt</DependentUpon>
     </Compile>
@@ -189,6 +191,9 @@
       <LastGenOutput>Northwind_model.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="ApplicationInsights.config" />
+    <None Include="log4net_app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Northwind_model.edmx.diagram">
       <DependentUpon>Northwind_model.edmx</DependentUpon>
     </None>
