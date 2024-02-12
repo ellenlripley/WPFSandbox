@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using log4net;
+
 using System.Windows;
 
 namespace WpfSandbox
@@ -13,5 +9,17 @@ namespace WpfSandbox
     /// </summary>
     public partial class App : Application
     {
+        ILog Log = LogManager.GetLogger(typeof(App));
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Log.Info("Starting WpfSandbox");
+ 
+            base.OnStartup(e);
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
+            Bootstrapper.Initialize();
+
+            Log.Info("WpfSandbox started");
+        }
     }
 }
