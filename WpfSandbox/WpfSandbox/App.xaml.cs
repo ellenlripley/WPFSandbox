@@ -13,5 +13,8 @@ namespace WpfSandbox
     /// </summary>
     public partial class App : Application
     {
+
+        
+
     }
 }
